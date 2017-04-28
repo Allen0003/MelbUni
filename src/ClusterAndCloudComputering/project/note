@@ -1,0 +1,48 @@
+
+You may want to say "I used MPI and a master/slave model" etc as per the lecture and discuss which features of Python/Java you used (scatter/gather or something else etc)
+
+
+/Users/allenwu/Desktop/jar/mpj-v0_44/lib/starter.jar
+
+
+
+MPI Home = /Users/allenwu/Desktop/jar/mpj-v0_44
+
+
+
+javac -cp ./Users/allenwu/Desktop/jar/mpj-v0_44/lib/mpj.jar /MelbUni/src/ClusterAndCloudComputering/project/MpiTest.java
+
+
+mpirun -np 1 python ex1.py
+
+
+/Users/allenwu/Desktop/jar/mpj-v0_44/lib/mpj.jar
+
+
+cd /Users/allenwu/Documents/workspace/MelbUni/src/ClusterAndCloudComputering/project/HelloWorld
+
+mpjrun.sh -np 4 MpiTest
+
+ls /data/projects/COMP90024
+
+ssh apss1943@spartan2.hpc.unimelb.edu.au
+
+
+tinyTwitter.json -> /data/projects/COMP90024/tinyTwitter.json
+
+ln -s /data/projects/melbGrid.json
+
+scp apss1943@spartan2.hpc.unimelb.edu.au:/data/projects/COMP90024/smallTwitter.json ~/.
+
+vim ==> what is inside the file
+
+:q leave
+
+
+ssh wenpinw@dimefox.eng.unimelb.edu.au
+
+
+mkdir /home/subjects/comp90049/submission/wenpinw/
+
+
+scp /Users/allenwu/Desktop/p1-code.zip wenpinw@dimefox.eng.unimelb.edu.au:/home/subjects/comp90049/submission/wenpinw/
