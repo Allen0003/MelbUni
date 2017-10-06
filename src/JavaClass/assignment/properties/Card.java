@@ -3,8 +3,18 @@ package JavaClass.assignment.properties;
 import JavaClass.assignment.enumParm.CardValue;
 import JavaClass.assignment.enumParm.Suit;
 
+/**
+ * <h1>Card</h1>
+ * 
+ * @author Allen
+ * @loginId wenpinw
+ * @version 1.0
+ * @since 04-10-2017
+ * 
+ */
 public class Card implements Comparable<Card> {
 	private Suit suit;
+
 	private CardValue cardValue;
 
 	public Suit getSuit() {

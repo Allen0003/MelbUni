@@ -9,7 +9,27 @@ import JavaClass.assignment.enumParm.Suit;
 import JavaClass.assignment.properties.Card;
 import JavaClass.assignment.properties.Player;
 
+/**
+ * <h1>UtilImpl</h1>
+ * <p>
+ * all logic methods here.
+ * </p>
+ * 
+ * @author Allen
+ * @loginId wenpinw
+ * @version 1.0
+ * @since 04-10-2017
+ * @param args
+ * 
+ */
+
 public class UtilImpl implements Util {
+
+	/**
+	 * @param Player
+	 * 
+	 * @return boolean true when is Straight Flush
+	 */
 
 	@Override
 	public boolean isStraightFlush(Player input) {
@@ -19,6 +39,12 @@ public class UtilImpl implements Util {
 		}
 		return result;
 	}
+
+	/**
+	 * @param Player
+	 * 
+	 * @return boolean true when is FourKind
+	 */
 
 	@Override
 	public boolean isFourKind(Player input) {
@@ -34,6 +60,12 @@ public class UtilImpl implements Util {
 		}
 		return false;
 	}
+
+	/**
+	 * @param Player
+	 * 
+	 * @return boolean true when is FullHouse
+	 */
 
 	@Override
 	public boolean isFullHouse(Player input) {
@@ -57,6 +89,12 @@ public class UtilImpl implements Util {
 		return false;
 	}
 
+	/**
+	 * @param Player
+	 * 
+	 * @return boolean true when is Flush
+	 */
+
 	@Override
 	public boolean isFlush(Player input) {
 		ArrayList<Card> cards = input.getCards();
@@ -71,6 +109,12 @@ public class UtilImpl implements Util {
 		return result;
 	}
 
+	/**
+	 * @param Player
+	 * 
+	 * @return boolean true when is Straight
+	 */
+
 	@Override
 	public boolean isStraight(Player input) {
 		ArrayList<Card> cards = input.getCards();
@@ -83,6 +127,12 @@ public class UtilImpl implements Util {
 		return true;
 	}
 
+	/**
+	 * @param Player
+	 * 
+	 * @return boolean true when is ThreeKind
+	 */
+
 	@Override
 	public boolean isThreeKind(Player input) {
 		ArrayList<Card> cards = input.getCards();
@@ -94,6 +144,12 @@ public class UtilImpl implements Util {
 			}
 		return false;
 	}
+
+	/**
+	 * @param Player
+	 * 
+	 * @return boolean true when is TwoPair
+	 */
 
 	@Override
 	public boolean isTwoPair(Player input) {
@@ -123,6 +179,12 @@ public class UtilImpl implements Util {
 		return false;
 	}
 
+	/**
+	 * @param Player
+	 * 
+	 * @return boolean true when is OnePair
+	 */
+
 	@Override
 	public boolean isOnePair(Player input) {
 		ArrayList<Card> cards = input.getCards();
@@ -134,9 +196,15 @@ public class UtilImpl implements Util {
 		return false;
 	}
 
+	/**
+	 * @param Player
+	 *            set player's rule based on his cards<br>
+	 *            set result's String
+	 */
+
 	public void setRule(Player input) {
 		if (this.isStraightFlush(input)) {
-			input.setResult(input.getHighest().getCardValueString() + " high straight flush");
+			input.setResult(input.getHighest().getCardValueString() + "-high straight flush");
 			input.setRules(Rules.StraightFlush);
 		} else if (this.isFourKind(input)) {
 			input.setResult("Four " + input.getHighest().getCardValueString() + "s");
@@ -147,10 +215,10 @@ public class UtilImpl implements Util {
 					+ input.getSeHighest().getCardValueString() + "s");
 		} else if (this.isFlush(input)) {
 			input.setRules(Rules.Flush);
-			input.setResult(input.getHighest().getCardValueString() + " high flush");
+			input.setResult(input.getHighest().getCardValueString() + "-high flush");
 		} else if (this.isStraight(input)) {
 			input.setRules(Rules.Straight);
-			input.setResult(input.getHighest().getCardValueString() + " high straight");
+			input.setResult(input.getHighest().getCardValueString() + "-high straight");
 		} else if (this.isThreeKind(input)) {
 			input.setRules(Rules.ThreeKind);
 			input.setResult("Three " + input.getHighest().getCardValueString() + "s");
@@ -160,31 +228,117 @@ public class UtilImpl implements Util {
 					+ input.getSeHighest().getCardValueString() + "s");
 		} else if (this.isOnePair(input)) {
 			input.setRules(Rules.OnePair);
-			input.setResult(" Pair of " + input.getHighest().getCardValueString() + "s");
+			input.setResult("Pair of " + input.getHighest().getCardValueString() + "s");
 		} else {
 			input.setRules(Rules.Nothing);
-			input.setResult(input.getCards().get(4).getCardValue().getCardValueString() + " high");
+			input.setResult(input.getCards().get(4).getCardValue().getCardValueString() + "-high");
 		}
 	}
+
+	/**
+	 * @param ArrayList<Player>
+	 *            print who wins the game in this round
+	 * 
+	 */
 
 	public String printFinalResult(ArrayList<Player> input) {
 		String winner = "";
 		Collections.sort(input);
 		if (input.get(0).getRules().getValue() != input.get(1).getRules().getValue()) {
-			winner = "Player" + input.get(0).getNumber() + " wins";
+			winner = "Player " + input.get(0).getNumber() + " wins.";
+		} else if (input.get(0).getRules().getValue() == Rules.FourKind.getValue()) {
+			if (input.get(0).getHighest().getCardValue() > input.get(1).getHighest().getCardValue()) {
+				winner = "Player " + input.get(0).getNumber() + " wins.";
+			} else if (input.get(0).getHighest().getCardValue() < input.get(1).getHighest().getCardValue()) {
+				winner = "Player " + input.get(1).getNumber() + " wins.";
+			} else if (input.get(0).getSeHighest().getCardValue() < input.get(1).getSeHighest().getCardValue()) {
+				winner = "Player " + input.get(0).getNumber() + " wins.";
+			} else if (input.get(0).getSeHighest().getCardValue() < input.get(1).getSeHighest().getCardValue()) {
+				winner = "Player " + input.get(1).getNumber() + " wins.";
+			}
 		}
 		if (winner.equals("")) {
-			winner = "Players ";
-			for (int i = 0; i < input.size(); i++) {
-				if (i == input.size() - 1) {
-					winner += "and " + Integer.valueOf(i + 1) + " draw.";
-				} else {
-					winner += Integer.valueOf(i + 1) + " ";
-				}
-			}
+			winner = compareEachNumber(input);
 		}
 		return winner;
 	}
+
+	/**
+	 * @param ArrayList<Player>
+	 *            when two or more players have the same rule, then compare card
+	 *            one after one
+	 * 
+	 */
+
+	// TODO to make the logic more understandable
+	private String compareEachNumber(ArrayList<Player> input) {
+		String result = "";
+		int rule = input.get(0).getRules().getValue();
+		int[] cardVal = new int[5];
+		boolean isFirst = true;
+		boolean isFound = false;
+		int defaulNum = 0;
+		ArrayList<Player> drawList = new ArrayList<Player>();
+		for (Player player : input) {
+			Collections.sort(player.getCards(), Collections.reverseOrder());
+			// only compare the same rule
+			if (rule == player.getRules().getValue()) {
+				if (isFirst) {
+					drawList.add(player);
+					defaulNum = player.getNumber();
+				}
+				for (int i = 0; i < player.getCards().size(); i++) {
+					if (isFirst) {
+						cardVal[i] = player.getCards().get(i).getCardValue().getCardValue();
+					} else {
+						if (cardVal[i] != player.getCards().get(i).getCardValue().getCardValue()) {
+							isFound = true;
+							if (cardVal[i] < player.getCards().get(i).getCardValue().getCardValue()) {
+								drawList = new ArrayList<Player>();
+								for (int j = i; j < player.getCards().size(); j++) {
+									cardVal[j] = player.getCards().get(j).getCardValue().getCardValue();
+								}
+								drawList.add(player);
+								result = "Player " + String.valueOf(player.getNumber()) + " wins.";
+								break;
+							} else {
+								break;
+							}
+						}
+					}
+				}
+				if (!isFound && !isFirst) {
+					drawList.add(player);
+				}
+				isFound = false;
+			}
+			isFirst = false;
+		}
+		if (result.equals("")) {
+			result = "Player " + String.valueOf(defaulNum) + " wins.";
+		}
+		if (drawList.size() != 1) {
+			result = "Players ";
+			for (int i = 0; i < drawList.size(); i++) {
+				if (i == drawList.size() - 1) {
+					result = result.substring(0, result.length() - 2);
+					result += " and " + drawList.get(i).getNumber() + " draw.";
+				} else {
+					result += drawList.get(i).getNumber() + ", ";
+				}
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * 
+	 * @param String
+	 *            valid data such as 2H
+	 * @exception invlide
+	 *                card input
+	 * @return Card This returns cardValue and suit
+	 */
 
 	public Card setCard(String input) throws Exception {
 		Card result = new Card();
@@ -217,7 +371,7 @@ public class UtilImpl implements Util {
 		} else if (temp[0].equals("Q")) {
 			result.setCardValue(CardValue.QUEEN);
 		} else {
-			throw new Exception("invalid card name " + input);
+			throw new Exception(Const.ERRORCARD + "'" + input + "'");
 		}
 
 		if (temp[1].equals("H")) {
@@ -229,7 +383,7 @@ public class UtilImpl implements Util {
 		} else if (temp[1].equals("C")) {
 			result.setSuit(Suit.CLUBS);
 		} else {
-			throw new Exception("invalid card name " + input);
+			throw new Exception(Const.ERRORCARD + "'" + input + "'");
 		}
 		return result;
 	}

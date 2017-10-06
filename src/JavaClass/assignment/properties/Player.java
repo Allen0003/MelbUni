@@ -5,6 +5,15 @@ import java.util.ArrayList;
 import JavaClass.assignment.enumParm.CardValue;
 import JavaClass.assignment.enumParm.Rules;
 
+/**
+ * <h1>Player</h1>
+ * 
+ * @author Allen
+ * @loginId wenpinw
+ * @version 1.0
+ * @since 04-10-2017
+ * 
+ */
 public class Player implements Comparable<Player> {
 
 	private ArrayList<Card> cards;
@@ -69,6 +78,6 @@ public class Player implements Comparable<Player> {
 	@Override
 	public int compareTo(Player player) {
 		int compareage = player.getRules().getValue();
-		return compareage -this.rules.getValue() ;
+		return compareage - this.rules.getValue();
 	}
 }

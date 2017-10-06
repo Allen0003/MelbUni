@@ -2,6 +2,15 @@ package JavaClass.assignment.util;
 
 import JavaClass.assignment.properties.Player;
 
+/**
+ * <h1>basic methods for util</h1>
+ * 
+ * @author Allen
+ * @loginId wenpinw
+ * @version 1.0
+ * @since 04-10-2017
+ * 
+ */
 public interface Util {
 
 	public boolean isStraightFlush(Player input);
